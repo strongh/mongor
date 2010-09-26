@@ -1,0 +1,11 @@
+Package: mongor
+Type: Package
+Title: A driver for MongoDB
+Version: 0.1
+Date: 2010-09-26
+Author: Homer Strong
+Maintainer: Homer Strong <homer.strong@gmail.com>
+Description: Allows R to communicate with the MongoDB database.
+Depends: rbson
+License: GPL
+LazyLoad: yes
