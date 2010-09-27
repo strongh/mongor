@@ -9,3 +9,6 @@ Description: Allows R to communicate with the MongoDB database.
 Depends: rbson
 License: GPL
 LazyLoad: yes
+Collate: 'make_header.R' 'mongoCount.R' 'mongoFindOne.R' 'mongo_get.R'
+    'mongoInsert.R' 'mongo_reply.R' 'mongo_send.R' 'op_insert.R'
+    'op_msg.R' '#op_query_flags.R#' 'op_query.R'
