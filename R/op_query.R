@@ -1,4 +1,5 @@
 ##' OP_QUERY
+##' 
 ##' One of the basic mongo messages.
 ##'
 ##' @param collection the name of the collection to query

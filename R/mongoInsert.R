@@ -6,8 +6,8 @@
 ##' @return the (updated) number of items in the collection
 
 mongoInsert <-
-  function(doc){
-    mongo_send(op_insert(doc))
-    mongoCount()
+  function(conn, doc){
+    mongoSend(op_insert(doc), conn)
+
   }
 
