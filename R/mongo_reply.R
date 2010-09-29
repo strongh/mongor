@@ -4,6 +4,7 @@
 ##' Strips out the header and parses the document(s).
 ##'
 ##' @param conn a socket connection
+##' @return list of objects from Mongo
 
 mongoReply <-
   function(conn){
@@ -12,7 +13,7 @@ mongoReply <-
     ## rest of header
     request.id = msg[1:4]
     msg = msg[-c(1:4)]
-    
+
     response.to = msg[1:4]
     msg = msg[-c(1:4)]
     
@@ -44,7 +45,8 @@ mongoReply <-
       out = append(out, doc)    
       msg = msg[-c(1:next.doc.len)]
     }
-    
+
     out
-}
+  }
+
 

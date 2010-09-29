@@ -1,3 +1,11 @@
+##' OP_INSERT
+##'
+##' See <URL>
+##' This formats a message to be inserted into Mongo.
+##'
+##' @param doc list to be inserted
+##' @return raw vector 
+
 op_insert <-
 function(doc){
   ## header is sent first, but is added last

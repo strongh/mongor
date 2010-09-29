@@ -4,7 +4,6 @@
 ##'
 ##' @return count
 
-
 mongoCount <-
   function(attempts = 10){
     mongo_send(op_query(collection='test.$cmd',

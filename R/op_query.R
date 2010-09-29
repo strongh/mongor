@@ -1,5 +1,4 @@
 ##' OP_QUERY
-##'
 ##' One of the basic mongo messages.
 ##'
 ##' @param collection the name of the collection to query
@@ -22,3 +21,17 @@ op_query <-
     return(c(header, rawl))
   }
 
+
+##' Make query flags
+##'
+##' Query flags are stored as a bit vector.
+##' Most of them are 0.
+##' See <URL>
+##'
+##' @param options options to include
+##' @return raw vector 
+
+op_query_flags <-
+  function(options){ # set flags for OP_QUERY
+    pack('b', as.integer(rep(0, 32)))
+  }
