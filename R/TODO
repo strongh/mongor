@@ -1,0 +1,34 @@
+TODO
+
+* catch DB query errors
+** getLastError
+* allow updating records 
+** partial updates to documents
+** push and pull items from arrays
+* multiple collections
+* DB summary/info/overview
+** name of DB
+** names of collections
+** dropping DBs
+* add support for arbitrary commands
+** ex (in JS): {a : {'$gt':15}}
+** many other query operators
+* map reduce?
+* removing docs
+** removing only selected docs
+* query return fields selector
+* OP_GETMORE
+* OP_UPDATE
+* OP_DELETE
+* OP_KILL_CURSORS
+** when 0 is *not* returned, kill cursors free resources
+* DB commands
+** special collection namespace $cmd
+** findOne
+** runCommand can be a helper function
+** privileged commands (run on admin DB only)
+** commandHelp to get help on a command
+** index-related commands
+** fsync command
+** current operations
+** validating commands
