@@ -10,7 +10,7 @@ TODO
 ** name of DB
 ** names of collections
 ** dropping DBs
-* add support for arbitrary commands
+* add support for arbitrary queries
 ** ex (in JS): {a : {'$gt':15}}
 ** many other query operators
 * map reduce?
@@ -18,17 +18,15 @@ TODO
 ** removing only selected docs
 * query return fields selector
 * OP_GETMORE
-* OP_UPDATE
 * OP_DELETE
 * OP_KILL_CURSORS
 ** when 0 is *not* returned, kill cursors free resources
 * DB commands
-** special collection namespace $cmd
 ** findOne
-** runCommand can be a helper function
 ** privileged commands (run on admin DB only)
 ** commandHelp to get help on a command
 ** index-related commands
 ** fsync command
 ** current operations
 ** validating commands
+* supporting option flags

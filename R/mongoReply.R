@@ -11,6 +11,9 @@ mongoReply <-
     msg = mongoResp(conn)
 
     ## rest of header
+    msg.length = msg[1:4]
+    msg = msg[-c(1:4)]
+    
     request.id = msg[1:4]
     msg = msg[-c(1:4)]
 
@@ -35,12 +38,10 @@ mongoReply <-
     num.returned = msg[1:4]
     msg = msg[-c(1:4)]
 
-    num.returned = msg[1:4]
-    msg = msg[-c(1:4)]
-
     print(paste("Found", decode_int32(num.returned)))
-    
+
     out = list()
+
     while(length(msg) > 4){ # a document is at least 5 bytes
       next.doc.len = decode_int32(msg[1:4])
       if (next.doc.len == 1){# wtf, mongo
@@ -48,8 +49,9 @@ mongoReply <-
         next()
       }
       doc = decode_document(msg[1:next.doc.len])
-      msg = msg[-c(1:next.doc.len)]      
-      doc = doc[-pmatch("_id", names(doc))]
+      msg = msg[-c(1:next.doc.len)]
+      if("_id" %in% names(doc))
+        doc = doc[-pmatch("_id", names(doc))]
       if (!is.null(unlist(doc))) # mongo sometimes returns empty docs?
         out = append(out, list(doc))    
     }
