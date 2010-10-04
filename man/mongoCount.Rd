@@ -1,7 +1,7 @@
 \name{mongoCount}
 \alias{mongoCount}
 \title{Count objects in a collection...}
-\usage{mongoCount(attempts=10)}
+\usage{mongoCount(conn, query=list())}
 \description{Count objects in a collection}
 \details{Returns the number of documents}
 \value{count}

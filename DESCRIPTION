@@ -10,6 +10,8 @@ Depends: rbson
 License: GPL
 LazyLoad: yes
 Collate: 'make_header.R' 'mongoConnect.R' 'mongoCount.R'
-    'mongoFindOne.R' 'mongo_get.R' 'mongoInsert.R' 'mongoQuery.R'
-    'mongo_reply.R' 'mongoResp.R' 'mongo_send.R' 'op_insert.R'
-    'op_msg.R' 'op_query.R'
+    'mongoDelete.R' 'mongoFindOne.R' 'mongoGetMore.R' 'mongo_get.R'
+    'mongoInsert.R' 'mongoQuery.R' 'mongoReply.R' 'mongoResp.R'
+    'mongoSend.R' 'mongoUpdate.R' 'op_delete.R' 'op_getmore.r'
+    'op_insert.R' 'op_kill_cursors.R' 'op_msg.R' 'op_query.R'
+    'op_update.R'

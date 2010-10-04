@@ -24,11 +24,10 @@ mongoReply <-
     msg = msg[-c(1:4)]
     ## end header
     
-    ## op_reply
-    
+    ## op_reply    
     response_flags = msg[1:4]
     msg = msg[-c(1:4)]
-    
+
     cursor.id = msg[1:8] # int64
     msg = msg[-c(1:8)]
     
@@ -38,7 +37,6 @@ mongoReply <-
     num.returned = msg[1:4]
     msg = msg[-c(1:4)]
 
-    print(paste("Found", decode_int32(num.returned)))
 
     out = list()
 
@@ -53,9 +51,15 @@ mongoReply <-
       if("_id" %in% names(doc))
         doc = doc[-pmatch("_id", names(doc))]
       if (!is.null(unlist(doc))) # mongo sometimes returns empty docs?
-        out = append(out, list(doc))    
+        out = append(out, list(doc))
+      ## handle errors!
+      if ("errmsg" %in% names(doc))
+        stop("Mongo returned the following error : ", doc$errmsg)
     }
-    
+    flush(conn) #sometimes mongo sounds double replies... strange.
+
+    ## apply attributes to out
+    attr(out, "cursor.id") = cursor.id
     out
   }
 
