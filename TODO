@@ -1,26 +1,18 @@
 TODO
 
-* catch DB query errors
-** getLastError
-* allow updating records 
-** partial updates to documents
+* S3 objects for DB, collection, results
+* testing
+* benchmarking vs. built-in R functional stuff
+* partial updates to documents
 ** push and pull items from arrays
 * multiple collections
 * DB summary/info/overview
 ** name of DB
 ** names of collections
 ** dropping DBs
-* add support for arbitrary queries
-** ex (in JS): {a : {'$gt':15}}
-** many other query operators
+* make query operators easier to use
 * map reduce?
-* removing docs
-** removing only selected docs
 * query return fields selector
-* OP_GETMORE
-* OP_DELETE
-* OP_KILL_CURSORS
-** when 0 is *not* returned, kill cursors free resources
 * DB commands
 ** findOne
 ** privileged commands (run on admin DB only)
