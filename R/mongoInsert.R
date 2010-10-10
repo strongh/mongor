@@ -2,6 +2,7 @@
 ##'
 ##' Inserts a document into a Mongo collection
 ##'
+##' @export
 ##' @param doc the list to be sent
 
 mongoInsert <-

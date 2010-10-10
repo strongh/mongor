@@ -2,6 +2,7 @@
 ##'
 ##' Very exciting
 ##'
+##' @export
 ##' @param connection
 ##' @param query an old query that you want to continue getting results from
 ##' @return more results

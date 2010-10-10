@@ -2,11 +2,12 @@
 ##'
 ##' Very exciting
 ##'
+##' @export
 ##' @param connection
 ##' @param query
 ##' @return query results, as a list
 
-mongoQuery <- function(conn, query, collection="test.foo"){
+mongoFind <- function(conn, query=list(), collection="test.foo"){
   mongoSend(op_query(collection=collection,
                      query_list=query,
                      to_return = 10), conn)
@@ -16,9 +17,18 @@ mongoQuery <- function(conn, query, collection="test.foo"){
   rep
 }
 
+##' Runs command and gets result
+##'
+##' Very exciting
+##'
+##' @export
+##' @param connection
+##' @param command
+##' @return command results, as a list
+
 mongoRunCommand <-
-  function(conn, command, optionList=list()){
-    mongoSend(op_query(collection="test.$cmd",
+  function(conn, optionList=list()){
+    mongoSend(op_query(collection="admin.$cmd",
                        query_list=optionList,
                        to_return = 1), conn)
     mongoReply(conn)

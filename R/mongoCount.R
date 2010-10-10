@@ -2,14 +2,14 @@
 ##'
 ##' Returns the number of documents
 ##'
+##' @export
 ##' @return count
 
 mongoCount <-
   function(conn, query=list()){
     mongoRunCommand(conn,
-                    "count",
-                    list(count="foo",
+                    list(count="$cmd",
                          query=query)
-                    )[[1]]$n
+                    )
   }
 
