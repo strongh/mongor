@@ -9,16 +9,16 @@
 op_update <-
   function(selector, doc){
     ## header is sent first, but is added last
-    fut_use = numToRaw(0, nBytes = 4) # reserved for future use
-    full_name = encode_cstring('test.foo') # full collection name
-    flags = op_update_flags()
+    fut_use <- numToRaw(0, nBytes = 4) # reserved for future use
+    full_name <- encode_cstring('test.foo') # full collection name
+    flags <- op_update_flags()
     
-    selector = encode_document(selector)
-    to_update = encode_document(doc)
+    selector <- encode_document(selector)
+    to_update <- encode_document(doc)
     
-    rawl = c(fut_use, full_name, flags, selector, to_update)
+    rawl <- c(fut_use, full_name, flags, selector, to_update)
     
-    header = make_header(2001, length(rawl))
+    header <- make_header(2001, length(rawl))
     
     return(c(header, rawl))
   }

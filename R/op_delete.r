@@ -9,15 +9,15 @@ op_delete <-
   function(collection='test.foo',
            selector=list()){
     ## header
-    fut_use = numToRaw(0, nBytes = 4) # reserved for future use    
-    full_name = encode_cstring(collection) # full collection name
-    flags = op_delete_flags()
+    fut_use <- numToRaw(0, nBytes = 4) # reserved for future use    
+    full_name <- encode_cstring(collection) # full collection name
+    flags <- op_delete_flags()
 
-    selector = encode_document(selector)
+    selector <- encode_document(selector)
     
-    rawl = c(fut_use, full_name, flags, selector)
+    rawl <- c(fut_use, full_name, flags, selector)
     
-    header = make_header(2006, length(rawl)) # make header last, so that it has the msgSize
+    header <- make_header(2006, length(rawl)) # make header last, so that it has the msgSize
     return(c(header, rawl))
   }
 

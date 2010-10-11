@@ -1,3 +1,20 @@
-h2. mongor
+h1. mongor
 
 A pure R driver for MongoDB.
+
+h2. Getting Started
+
+You'll need a couple of things to use mongor.
+
+*# get MongoDB installed & running
+*# the "rbson":https://github.com/strongh/rbson/ library
+
+A sample session:
+
+pre. 
+myDocument <- list(mongo="R-friendly!")
+mc <- mongoConnect()
+mongoInsert(mc, myDocument)
+mongoFind(mc, list(mongo=list("$exists"=TRUE)))
+
+All of the basic message types have been implemented; I'm still working on how best to expose Mongo's services to R users. Any input is appreciated!

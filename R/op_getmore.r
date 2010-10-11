@@ -11,13 +11,13 @@ op_getmore <-
            cursor.id,
            to_return = 10){
     ## header
-    fut_use = numToRaw(0, nBytes = 4) # reserved for future use
-    full_name = encode_cstring(collection) # full collection name
-    to_return = numToRaw(to_return, nBytes = 4) #number of entries to return
-    cursor.id = cursor.id
+    fut_use <- numToRaw(0, nBytes = 4) # reserved for future use
+    full_name <- encode_cstring(collection) # full collection name
+    to_return <- numToRaw(to_return, nBytes = 4) #number of entries to return
+    cursor.id <- cursor.id
     
-    rawl = c(fut_use, full_name, to_return, cursor.id)
+    rawl <- c(fut_use, full_name, to_return, cursor.id)
     
-    header = make_header(2005, length(rawl)) # make header last, so that it has the msgSize
+    header <- make_header(2005, length(rawl)) # make header last, so that it has the msgSize
     return(c(header, rawl))
   }
