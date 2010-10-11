@@ -6,6 +6,7 @@
 ##' @param doc the list to be sent
 
 mongoDelete <-
-  function(conn, selector){
-    mongoSend(op_delete(selector=selector), conn)
+  function(conn, selector, dbname="test", collection="foo"){
+    mongoSend(op_delete(paste(dbname, collection, sep="."),
+                        selector=selector), conn)
   }

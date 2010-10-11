@@ -7,7 +7,7 @@
 ##' @return a raw vector encoding the query
 
 op_getmore <-
-  function(collection='test.$cmd',
+  function(collection,
            cursor.id,
            to_return = 10){
     ## header

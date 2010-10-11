@@ -7,10 +7,10 @@
 ##' @return raw vector 
 
 op_insert <-
-  function(doc){
+  function(collection, doc){
     ## header is sent first, but is added last
     fut_use <- numToRaw(0, nBytes = 4) # reserved for future use
-    full_name <- encode_cstring('test.foo') # full collection name
+    full_name <- encode_cstring(collection) # full collection name
     to_insert <- encode_document(doc)
     
     rawl <- c(fut_use, full_name, to_insert)

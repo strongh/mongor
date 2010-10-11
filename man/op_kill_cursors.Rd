@@ -1,7 +1,7 @@
 \name{op_kill_cursors}
 \alias{op_kill_cursors}
 \title{OP_KILL_CURSORS...}
-\usage{op_kill_cursors(collection="test.$cmd", cursor.ids, to_return=10)}
+\usage{op_kill_cursors(collection, cursor.ids, to_return=10)}
 \description{OP_KILL_CURSORS}
 \details{One of the basic mongo messages.}
 \value{a raw vector encoding the query}

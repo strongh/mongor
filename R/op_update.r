@@ -7,10 +7,10 @@
 ##' @return raw vector 
 
 op_update <-
-  function(selector, doc){
+  function(collection, selector, doc){
     ## header is sent first, but is added last
     fut_use <- numToRaw(0, nBytes = 4) # reserved for future use
-    full_name <- encode_cstring('test.foo') # full collection name
+    full_name <- encode_cstring(collection) # full collection name
     flags <- op_update_flags()
     
     selector <- encode_document(selector)

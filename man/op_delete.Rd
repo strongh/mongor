@@ -1,7 +1,7 @@
 \name{op_delete}
 \alias{op_delete}
 \title{OP_DELETE...}
-\usage{op_delete(collection="test.foo", selector=list())}
+\usage{op_delete(collection, selector=list())}
 \description{OP_DELETE}
 \details{One of the basic mongo messages.}
 \arguments{\item{collection}{the name of the collection to query}

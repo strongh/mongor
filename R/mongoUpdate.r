@@ -6,7 +6,7 @@
 ##' @param doc the list to be sent
 
 mongoUpdate <-
-  function(conn, selector, doc){
-    mongoSend(op_update(selector, doc), conn)
+  function(conn, selector, doc, dbname="test", collection="foo"){
+    mongoSend(op_update(paste(dbname, collection, sep="."), selector, doc), conn)
   }
 

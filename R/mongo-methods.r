@@ -1,6 +1,6 @@
 ##' Mongo methods
 ##'
-##'
+##' @export
 
 print.mongoResult <- function(x){
   attr(x, "cursor.id") <- NULL

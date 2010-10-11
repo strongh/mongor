@@ -7,15 +7,15 @@
 ##' @return a raw vector encoding the query
 
 op_query <-
-  function(collection='test.$cmd',
-           query_list=list(),
+  function(collection,
+           doc=list(),
            to_return = 200){
     ## header
     flags <- op_query_flags()
     full_name <- encode_cstring(collection) # full collection name
     to_skip <- numToRaw(0, nBytes = 4)  # number of documents to skip
     to_return <- numToRaw(to_return, nBytes = 4) #number of entries to return
-    query <- encode_document(query_list) # empty query
+    query <- encode_document(doc) # empty query
     
     rawl <- c(flags, full_name, to_skip, to_return, query)
     

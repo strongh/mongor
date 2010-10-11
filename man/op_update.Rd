@@ -1,7 +1,7 @@
 \name{op_update}
 \alias{op_update}
 \title{OP_UPDATE...}
-\usage{op_update(selector, doc)}
+\usage{op_update(collection, selector, doc)}
 \description{OP_UPDATE}
 \details{See <URL>
 This formats a message to be inserted into Mongo.}

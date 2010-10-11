@@ -6,7 +6,7 @@
 ##' @param query_list the query object, given as an R list
 
 op_delete <-
-  function(collection='test.foo',
+  function(collection,
            selector=list()){
     ## header
     fut_use <- numToRaw(0, nBytes = 4) # reserved for future use    

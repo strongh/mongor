@@ -7,7 +7,7 @@
 ##' @return a raw vector encoding the query
 
 op_kill_cursors <-
-  function(collection='test.$cmd',
+  function(collection,
            cursor.ids,
            to_return = 10){
     ## header

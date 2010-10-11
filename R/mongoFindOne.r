@@ -9,14 +9,11 @@
 ##' @return a list of query results
 
 mongoFindOne <-
-  function(query = list(), attempts = 10){
-    mongo_send(op_query(collection='test.foo',
-                        query=list(`$query`=query)))
-    for(i in 1:attempts){
-      tt <- try(mongo_reply(), silent=TRUE)
-      if(class(tt) != "try-error")
-        break()
-    }
-    tt
+  function(conn, query = list(), attempts = 10, dbname="test", collection="foo"){
+    mongoSend(op_query(collection=paste(dbname, collection, sep="."),
+                       doc=list(`$query`=query),
+                       to_return=1), conn)
+    rep = mongoReply(conn)
+    
+    rep
   }
-

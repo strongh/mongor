@@ -7,13 +7,13 @@
 ##' @param query
 ##' @return query results, as a list
 
-mongoFind <- function(conn, query=list(), collection="test.foo"){
-  mongoSend(op_query(collection=collection,
-                     query_list=query,
+mongoFind <- function(conn, query=list(), dbname="test", collection="foo"){
+  mongoSend(op_query(collection=paste(dbname, collection, sep="."),
+                     doc=query,
                      to_return = 10), conn)
   
   rep = mongoReply(conn)
-
+  
   rep
 }
 
@@ -29,7 +29,7 @@ mongoFind <- function(conn, query=list(), collection="test.foo"){
 mongoRunCommand <-
   function(conn, cmdDoc){
     mongoSend(op_query(collection="admin.$cmd",
-                       query_list=cmdDoc,
+                       doc=cmdDoc,
                        to_return = 1), conn)
     mongoReply(conn)
   }

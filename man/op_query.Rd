@@ -1,7 +1,7 @@
 \name{op_query}
 \alias{op_query}
 \title{OP_QUERY...}
-\usage{op_query(collection="test.$cmd", query_list=list(), to_return=200)}
+\usage{op_query(collection, doc=list(), to_return=200)}
 \description{OP_QUERY}
 \details{One of the basic mongo messages.}
 \value{a raw vector encoding the query}
