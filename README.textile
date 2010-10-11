@@ -1,6 +1,15 @@
 h1. mongor
 
-A pure R driver for MongoDB.
+A pure R driver for MongoDB. mongor is Still in its infancy, but already supports basic operations including 
+
+*inertions, 
+*queries, 
+*updates, 
+*deletes, and 
+*executing database commands.
+
+MongoDB offers many more advanced features. 
+
 
 h2. Getting Started
 
@@ -9,12 +18,12 @@ You'll need a couple of things to use mongor.
 *# get "MongoDB installed & running":http://www.mongodb.org/display/DOCS/Quickstart
 *# the "rbson":https://github.com/strongh/rbson/ library
 
-A sample session:
+A teaser session (to convince the reader that at least some of the package works at all):
 
 pre. 
-> myDocument <- list(mongo="R-friendly!")
-> mc <- mongoConnect()
-> mongoInsert(mc, myDocument)
-> mongoFind(mc, list(mongo=list("$exists"=TRUE)))
+> myDocument <- list(mongo="R-friendly!") # R lists are the equivalent of Mongo's documents
+> mc <- mongoConnect() # Opens a connection to a Mongo server, with localhost as the default
+> mongoInsert(mc, myDocument) 
+> mongoFind(mc, list(mongo=list("$exists"=TRUE))) # the list is a "query document":http://www.mongodb.org/display/DOCS/Querying
 
 All of the basic message types have been implemented; I'm still working on how best to expose Mongo's services to R users. Any input is appreciated!

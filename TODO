@@ -1,24 +1,14 @@
 TODO
 
-* S3 objects for DB, collection, results
-* testing
-* benchmarking vs. built-in R functional stuff
-* partial updates to documents
+* S3 objects for DB, collections, results
+* moar testing
+* benchmarking vs. built-in R functionals (Filter, Reduce, etc)
+* partial updates to arrays in documents
 ** push and pull items from arrays
-* multiple collections
-* DB summary/info/overview
-** name of DB
-** names of collections
-** dropping DBs
-* make query operators easier to use
-* map reduce?
+* DB admin? maybe people just want to use the mongo shell...
+* make query operators easier to use (so that names don't need to be quoted)
+* nice interface for map/reduce
+* nice interface for aggregations
 * query return fields selector
-* DB commands
-** findOne
-** privileged commands (run on admin DB only)
-** commandHelp to get help on a command
-** index-related commands
-** fsync command
-** current operations
-** validating commands
 * supporting option flags
+* helper functions for managing cursors, (geo-)indexing, alt connection modes.
