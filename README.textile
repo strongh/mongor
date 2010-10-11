@@ -24,6 +24,6 @@ pre.
 > myDocument <- list(mongo="R-friendly!") # R lists are the equivalent of Mongo's documents
 > mc <- mongoConnect() # Opens a connection to a Mongo server, with localhost as the default
 > mongoInsert(mc, myDocument) 
-> mongoFind(mc, list(mongo=list("$exists"=TRUE))) # the list is a "query document":http://www.mongodb.org/display/DOCS/Querying
+> mongoFind(mc, list(mongo=list("$exists"=TRUE))) # the list is a query document
 
 All of the basic message types have been implemented; I'm still working on how best to expose Mongo's services to R users. Any input is appreciated!
