@@ -2,11 +2,11 @@ h1. mongor
 
 A pure R driver for MongoDB. mongor is Still in its infancy, but already supports basic operations including 
 
-*inertions, 
-*queries, 
-*updates, 
-*deletes, and 
-*executing database commands.
+* inertions, 
+* queries, 
+* updates, 
+* deletes, and 
+* executing database commands.
 
 MongoDB offers many more advanced features. 
 
