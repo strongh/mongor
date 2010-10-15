@@ -18,8 +18,6 @@ mongoConnect <-
       stop("Could not connect to Mongo!")
     class(sock) <- c("mongoConnection", class(sock))    
 
-    assign("connect", sock, envir=mongoEnv)
-    
     sock
   }
 
@@ -35,46 +33,36 @@ print.mongoConnection <-
     print("connected to mongo!")
   }
 
-##' Connect method for Mongo connections
+
+##' listDb
 ##'
-##' Prints stuff for mongo.
-##'
-##' @param a mongoConnection 
-
-connect.sockconn <-
-  function(conn){
-    pg = try(
-      silent = TRUE)
-    if(is(conn, "sockconn") && isOpen(conn) && pg == 1){
-      conn
-    }
-    else{
-      host.port <- strsplit(summary(a)$description, ":")[[1]]
-      host <- substr(host.port[1], 3, nchar(host))
-      port <- as.numeric(host.port[2])
-      mongoConnect(host=host, port=port)      
-    }
-  }
-
-connect <- function(x)
-  UseMethod("connect")
-
-##' ##' The internal Mongo environment
-##'
-##' Keeps track of active connections and cursors.
-##' Not exported!
-
-mongoEnv <- new.env()
-
-
-##' Mongo Get
-##'
-##' getting stuff from the mongo
+##' List of databases on this connection
 ##'
 ##' @export
-##' @param name
+##' @param a mongoConnection
+##' @return character vector of DB names 
 
-monGet <- function(nam){
-  get(nam, envir=mongoEnv)
-}
+listDb <-
+  function(conn){
+    dbs = mongoRunCommand(conn,
+      list(listDatabases=1))[[1]]$databases
+    ## returns more information... throw it away.
+    ## inds picks out every third entry, which are the names
+    inds = (1:(length(dbs)/3))*3-2
+    
+    dbs[inds]
+  }
 
+
+##' dropDb
+##'
+##' Drop the current database.
+##'
+##' @export
+##' @param a mongoConnection
+
+dropDb <-
+  function(conn){
+    mongoRunCommand(conn,
+      list(dropDatabase=1))
+  }

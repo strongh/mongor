@@ -1,4 +1,4 @@
-##' Sends and receices query
+##' Sends and returns query
 ##'
 ##' Very exciting
 ##'
@@ -7,14 +7,58 @@
 ##' @param query
 ##' @return query results, as a list
 
-mongoFind <- function(conn, query=list(), dbname="test", collection="foo"){
+mongoFind <- function(...){
+  UseMethod("mongoFind")
+}
+
+
+##'
+##' @Export
+
+mongoFind.mongoCollection <- function(collection, query){
+  collection.name <- as.character(collection)
+  dbname <- attr(collection, "dbname")
+  conn <- attr(collection, "conn") 
+  
+  rep <- mongoFind.default(conn, dbname, collection, query)   
+  
+  rep
+}
+
+
+##'
+##' @export
+
+mongoFind.mongoDb <- function(db, query=list()){
+  dbname <- as.character(db)
+  conn <- attr(db, "conn") 
+  mongoSend(op_query(collection=paste(dbname, collection, sep="."),
+                     doc=query,
+                     to_return = 10), conn)  
+  rep <- mongoReply(conn)
+  
+  rep
+}
+
+##'
+##' @export
+
+mongoFind.mongoConnection <- function(conn, dbname, collection, query=list()){
+  dbame <- as.character(db)
+  conn <- attr(dbname, "conn")
+  mongoFind(conn, dbname, collection, query)  
+}
+
+##'
+##' @export
+mongoFind.default <- function(conn, dbname, collection, query){
   mongoSend(op_query(collection=paste(dbname, collection, sep="."),
                      doc=query,
                      to_return = 10), conn)
   
-  rep = mongoReply(conn)
+  rep <- mongoReply(conn)
   
-  rep
+  rep 
 }
 
 ##' Runs command and gets result
@@ -27,8 +71,8 @@ mongoFind <- function(conn, query=list(), dbname="test", collection="foo"){
 ##' @return command results, as a list
 
 mongoRunCommand <-
-  function(conn, cmdDoc){
-    mongoSend(op_query(collection="admin.$cmd",
+  function(conn, cmdDoc, dbname="admin"){
+    mongoSend(op_query(collection=paste(dbname, ".$cmd", sep=""),
                        doc=cmdDoc,
                        to_return = 1), conn)
     mongoReply(conn)

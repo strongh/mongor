@@ -2,27 +2,26 @@
 ##'
 ##' @export
 
-print.mongoResult <- function(x){
-  attr(x, "cursor.id") <- NULL
-  print(unclass(x))
-  invisible(x)
+print.mongoResult <- function(res){
+  attr(res, "cursor.id") <- NULL
+  print(unclass(res))
+  invisible(res)
 }
 
-summary.mongoResult <- function(x){
-  cat(length(x), "documents returned from MongoDB\n")
+summary.mongoResult <- function(res){
+  cat(length(res), "documents returned from MongoDB\n")
   cat("Cursor ID: ", attr(x, "cursor.id"), "\n")
   
-  print(x)
+  print(res)
 }
 
-print.mongoCollection <- function(x){
-  attr(x, "db.name") <- "test"
-  attr(x, "collection.name") = "foo"
-  print(unclass(x))
-  invisible(x)
+print.mongoCollection <- function(coll){
+  attr(coll, "db.name") <- "test"
+  attr(coll, "collection.name") = "foo"
+  print(unclass(coll))
+  invisible(coll)
 }
 
-summary.mongoCollection <- function(x){
-  print(x)
+summary.mongoCollection <- function(coll){
+  print(coll)
 }
-

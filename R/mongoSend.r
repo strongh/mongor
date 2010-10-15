@@ -7,6 +7,7 @@
 
 mongoSend <-
   function(msg, conn){
+    flush(conn)
     writeBin(msg, conn, 1, endian="little")
   }
 
