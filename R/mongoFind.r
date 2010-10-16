@@ -13,7 +13,7 @@ mongoFind <- function(...){
 
 
 ##'
-##' @Export
+##' @export
 
 mongoFind.mongoCollection <- function(collection, query){
   collection.name <- as.character(collection)
@@ -38,15 +38,6 @@ mongoFind.mongoDb <- function(db, query=list()){
   rep <- mongoReply(conn)
   
   rep
-}
-
-##'
-##' @export
-
-mongoFind.mongoConnection <- function(conn, dbname, collection, query=list()){
-  dbame <- as.character(db)
-  conn <- attr(dbname, "conn")
-  mongoFind(conn, dbname, collection, query)  
 }
 
 ##'

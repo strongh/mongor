@@ -51,7 +51,7 @@ summary.mongoDb <- function(db){
 }
 
 ##'
-##' @export
+##' Don't export this yet - roxygen doesn't quote it in the NAMESPACE
 
 `[.mongoCollection` <- function(collection, ...){
   query <-
