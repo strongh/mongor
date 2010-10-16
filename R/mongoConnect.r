@@ -9,18 +9,27 @@
 
 mongoConnect <-
   function(host="localhost", port=27017){
-    stopifnot(capabilities()["sockets"])
-    sock <- try(socketConnection(host=host,
-                             port=port,
-                             open="wb"),
-                silent=TRUE)
-    if (is(sock, "try-error"))
-      stop("Could not connect to Mongo!")
-    class(sock) <- c("mongoConnection", class(sock))    
+    connected <- exists(paste(host, port, sep="-"), envir=mongoEnv)
+    sock <- if(!connected) {# see if connection exists
+      stopifnot(capabilities()["sockets"])
+      sock <- try(socketConnection(host=host,
+                                   port=port,
+                                   open="wb"),
+                  silent=TRUE)
+      if (is(sock, "try-error"))
+        stop("Could not connect to Mongo!")
+      class(sock) <- c("mongoConnection", class(sock))
+      assign(paste(host, port, sep="-"), sock, envir=mongoEnv)
+    } else {
+      get(paste(host, port, sep="-"), envir=mongoEnv)
+    }
 
     sock
   }
 
+##' environment to hold connections
+##' and cursors. not exported.
+mongoEnv = new.env()
 
 ##' Print method for Mongo connections
 ##'
