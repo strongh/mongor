@@ -9,15 +9,6 @@
 ##' @param port the port where mongo is hosted
 ##' @return socket connection
 
-mongoDb <-
-  function(dbname, host="localhost", port=27017){
-    db <- dbname 
-    attr(db, "conn") <- mongoConnect(host=host, port=port)
-    
-    class(db) <- c("mongoDb", class(db))
-    
-    db
-  }
 
 ##'
 ##' @export
@@ -32,16 +23,6 @@ mongoCollection <-
     coll
   }
 
-##'
-##' @export
-
-print.mongoDb <- function(db){
-  conn <- summary(attr(db, "conn"))
-  attr(db, "conn") <- NULL
-  info <- strsplit(conn$description, ":")[[1]]
-  cat("MongoDB", db,
-      "\nOn host", substr(info[1], 3, nchar(info[1])), "and port", info[2], "\n")
-}
 
 ##'
 ##' @export
