@@ -7,6 +7,11 @@ mc <- mongoConnect() # make a connection
 ## by default, these operations are on the 'test' db, collection 'foo'
 ##
 ## since MongoDB is document-based, you can insert lists with many different types
+
+## list databases on this host
+listDb(mc)
+
+##' How to query and insert documents to a collection 
 mongoInsert(mc, list(hello="world", apples=3, time=Sys.time())) # insert a document
 mongoInsert(mc, list(hello="world", apples=89, time=Sys.time())) # insert a document
 mongoInsert(mc, list(hello="earth", apples=91, time=Sys.time())) # insert a document
