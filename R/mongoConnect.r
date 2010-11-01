@@ -18,6 +18,7 @@ mongoConnect <-
                   silent=TRUE)
       if (is(sock, "try-error"))
         stop("Could not connect to Mongo!")
+      flush(sock)
       class(sock) <- c("mongoConnection", class(sock))
       assign(paste(host, port, sep="-"), sock, envir=mongoEnv)
     } else {
@@ -53,11 +54,11 @@ print.mongoConnection <-
 
 listDb <-
   function(conn){
-    dbs = mongoRunCommand(conn,
+    dbs <- mongoRunCommand(conn,
       list(listDatabases=1))[[1]]$databases
     ## returns more information... throw it away.
     ## inds picks out every third entry, which are the names
-    inds = (1:(length(dbs)/3))*3-2
+    inds <- (1:(length(dbs)/3))*3-2
     
     dbs[inds]
   }
@@ -71,7 +72,12 @@ listDb <-
 ##' @param a mongoConnection
 
 dropDb <-
-  function(conn){
-    mongoRunCommand(conn,
-      list(dropDatabase=1))
+  function(conn, db){
+    rep <- mongoRunCommand(conn, dbname=as.character(db),
+                           list(dropDatabase=1))[[1]]
+    
+    if(rep$ok==1)
+      print(paste("MongoDB databse", rep$dropped, "dropped succesfully!"))
+    else
+      print("Something's wrong!")    
   }
