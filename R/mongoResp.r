@@ -9,21 +9,20 @@
 
 mongoResp <-
   function(conn, timeout=10){
-    for (i in 1:timeout){
-      if(socketSelect(list(conn, conn), c(FALSE, TRUE), 5)[2])
-        first.raw <- readBin(con=conn, what='raw', n=4)
-      else
-        stop("Timeout!")
-      msg.len <- decode_int32(first.raw)
-      if (msg.len > 0)
-        break()
-      if(i == timeout-1)
-        stop("No word from mongo!")
+    socketSelect(list(conn), c(FALSE), timeout=timeout)
+    
+    first.raw <- readBin(con=conn, what='raw', n=4)
+    
+    msg.len <- decode_int32(first.raw)
+    
+    if (msg.len == 0){
+      stop("No word from mongo!")
+    } else {            
+      msg <- readBin(
+                     con=conn,
+                     what='raw',
+                     n=(msg.len-4)) # msg.len counts itself in the total message length
+      
+      c(first.raw, msg)
     }
-    msg <- readBin(
-      con=conn,
-      what='raw',
-      n=(msg.len-4)) # msg.len counts itself in the total message length
-
-    c(first.raw, msg)
   }
