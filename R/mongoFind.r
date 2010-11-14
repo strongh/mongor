@@ -29,7 +29,7 @@ mongoFind.mongoCollection <- function(collection, query){
 ##'
 ##' @export
 
-mongoFind.mongoDb <- function(db, query=list()){
+mongoFind.mongoDb <- function(db, collection, query=list()){
   dbname <- as.character(db)
   conn <- attr(db, "conn") 
   mongoSend(op_query(collection=paste(dbname, collection, sep="."),
