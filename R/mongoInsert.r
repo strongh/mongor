@@ -6,7 +6,7 @@
 ##' @param doc the list to be sent
 
 mongoInsert <-
-  function(conn, doc, dbname="test", collection="foo"){
+  function(conn, dbname, collection, doc){
     mongoSend(op_insert(paste(dbname, collection, sep="."), doc), conn)
   }
 

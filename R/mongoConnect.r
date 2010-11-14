@@ -69,7 +69,8 @@ listDb <-
 ##' Drop the current database.
 ##'
 ##' @export
-##' @param a mongoConnection
+##' @param conn mongoConnection
+##' @param db name of database to drop
 
 dropDb <-
   function(conn, db){
