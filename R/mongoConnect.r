@@ -82,3 +82,125 @@ dropDb <-
     else
       print("Something's wrong!")    
   }
+
+
+##' buildInfo
+##'
+##' Get version number and other build information, for a server.
+##'
+##' @export
+##' @param conn mongoConnection
+
+buildInfo <-
+  function(conn){
+    mongoRunCommand(conn, list(buildinfo=1))[[1]]
+  }
+
+##' collStats
+##'
+##' Get stats about a collection.
+##'
+##' @export
+##' @param conn mongoConnection
+##' @param dbname the name of the database
+##' @param collection the name of collection
+##' @param scale an optional argument specifying the units of storage
+
+collStats <-
+  function(conn, dbname, collection, scale = 1){
+    mongoRunCommand(conn,
+                    dbname = dbname,
+                    list(collStats=collection))[[1]]
+  }
+
+
+##' collCount
+##'
+##' Get the number of documents in the specified collection.
+##'
+##' @export
+##' @param conn mongoConnection
+##' @param dbname the name of the database
+##' @param collection the name of collection
+
+collCount <-
+  function(conn, dbname, collection, query=list()){    
+    argList <- list(count = collection)
+    if (length(query) > 0)
+      argList$query <- query
+    
+    mongoRunCommand(conn,
+                    dbname = dbname,
+                    argList)[[1]]$n
+  }
+
+
+##' collDistinct
+##'
+##' Get a list of distinct values for a key in a collection.
+##' The optional query subsets the collection.
+##'
+##' @export
+##' @param conn mongoConnection
+##' @param dbname the name of the database
+##' @param collection the name of collection
+##' @param key the key whose distinct values to count
+
+collDistinct <-
+  function(conn, dbname, collection, key, query=list()){    
+    argList <- list(distinct = collection,
+                    key = key)
+    if (length(query) > 0)
+      argList$query <- query
+    
+    mongoRunCommand(conn,
+                    dbname = dbname,
+                    argList)[[1]]$values
+  }
+
+
+##' dbStats
+##'
+##' Get stats about a database
+##'
+##' @export
+##' @param conn mongoConnection
+##' @param dbname the name of the database
+
+dbStats <-
+  function(conn, dbname){    
+    mongoRunCommand(conn,
+                    dbname = dbname,
+                    list(dbStats = 1))
+  }
+
+
+##' collDrop
+##'
+##' Drop a collection
+##'
+##' @export
+##' @param conn mongoConnection
+##' @param dbname the name of the database
+##' @param collection the name of the collection to drop
+
+collDrop <-
+  function(conn, dbname, collection){    
+    mongoRunCommand(conn,
+                    dbname = dbname,
+                    list(drop = collection))
+  }
+
+##' getLastError
+##'
+##' Get the status of the last operation on this connection
+##'
+##' @export
+##' @param conn mongoConnection
+
+getLastError <-
+  function(conn){    
+    mongoRunCommand(conn,
+                    list(getLastError = 1))
+  }
+
